@@ -1,15 +1,64 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
-import leaf from "../../Assets/Projects/leaf.png";
-import emotion from "../../Assets/Projects/emotion.png";
-import editor from "../../Assets/Projects/codeEditor.png";
+
+// Import your assets here
 import chatify from "../../Assets/Projects/utilss.png";
-import suicide from "../../Assets/Projects/suicide.png";
 import bitsOfCode from "../../Assets/Projects/talent.png";
+import editor from "../../Assets/Projects/codeEditor.png";
+import leaf from "../../Assets/Projects/leaf.png";
+import suicide from "../../Assets/Projects/suicide.png";
+import emotion from "../../Assets/Projects/emotion.png";
 
 function Projects() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const projectData = [
+    {
+      imgPath: chatify,
+      title: "Text Utils",
+      description: "A web application built with React.js, Material-UI, and Firebase. It allows users to manage text efficiently.",
+      ghLink: "https://github.com/ramk125/TextUtil-React",
+      demoLink: "https://ramk125.github.io/TextUtil-React",
+      tech: ["React", "Material-UI", "Firebase"],
+      isLarge: true, // Bento "md:col-span-8" logic
+    },
+    {
+      imgPath: bitsOfCode,
+      title: "Talent Tutorial",
+      description: "An educational platform providing class-wise courses and study resources.",
+      ghLink: "https://github.com/ramk125/my-talent-tutorial",
+      demoLink: "https://ramk125.github.io/my-talent-tutorial/PracticeNew.html",
+      tech: ["React", "Bootstrap"],
+      isLarge: false,
+    },
+    {
+      imgPath: editor,
+      title: "Real Time Chat",
+      description: "Built with Java and Socket Programming for real-time communication.",
+      ghLink: "https://github.com/soumyajit4419/Editor.io",
+      demoLink: "https://editor.soumya-jit.tech/",
+      tech: ["Java", "MySQL", "Sockets"],
+      isLarge: false,
+    },
+    {
+      imgPath: leaf,
+      title: "Restaurant System",
+      description: "Manage orders, menu items, and table reservations efficiently.",
+      ghLink: "https://github.com/soumyajit4419/Plant_AI",
+      demoLink: "https://plant49-ai.herokuapp.com/",
+      tech: ["HTML", "JS", "MySQL"],
+      isLarge: true,
+    }
+  ];
+
+  const filteredProjects = projectData.filter(
+    (p) =>
+      p.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.tech.some((t) => t.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
+
   return (
     <Container fluid className="project-section">
       <Particle />
@@ -20,85 +69,35 @@ function Projects() {
         <p style={{ color: "white" }}>
           Here are a few projects I've worked on recently.
         </p>
+
+        {/* Search Box from original Bento Design */}
+        <div className="glass search-wrapper mb-5 p-3 rounded-4">
+          <Form.Control
+            type="text"
+            placeholder="Filter by tech (e.g. React)..."
+            className="bg-transparent text-white border-secondary"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={chatify}
-              isBlog={false}
-              title="Text Utils"
-              description="A web application built with React.js, Material-UI, and Firebase. It allows users to book, manage, and track appointments efficiently. Supports real-time updates, notifications, and appointment history. Designed to improve productivity and enhance user experience for clients and service providers."
-              ghLink="https://github.com/ramk125/TextUtil-React"
-              demoLink="https://ramk125.github.io/TextUtil-React"
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={bitsOfCode}
-              isBlog={false}
-              title="Talent Tutorial"
-              description="An educational web platform built with React.js, Bootstrap, and JavaScript.
-Provides users with class-wise courses, extra learning materials, and study resources.
-Includes profile management, interactive course sections, and responsive design.
-Designed to enhance learning experience and make online education accessible and engaging."
-              ghLink="https://github.com/ramk125/my-talent-tutorial"
-              demoLink="https://ramk125.github.io/my-talent-tutorial/PracticeNew.html"
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={editor}
-              isBlog={false}
-              title="Real Time Chat Application"
-              description="Built with Java, Swing, MySQL, and Socket Programming.
-Allows users to register, login, and chat in real-time with friends.
-Supports message broadcasting, private messaging, and user authentication.
-Designed for smooth communication and a responsive messaging experience."
-              ghLink="https://github.com/soumyajit4419/Editor.io"
-              demoLink="https://editor.soumya-jit.tech/"              
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={leaf}
-              isBlog={false}
-              title="Restarunt Management System"
-              description="A web application built with HTML, CSS, JavaScript, and MySQL.
-Allows users to manage orders, menu items, and table reservations efficiently.
-Supports billing, inventory tracking, and daily sales reports.
-Designed to streamline restaurant operations and enhance customer service experience."
-              ghLink="https://github.com/soumyajit4419/Plant_AI"
-              demoLink="https://plant49-ai.herokuapp.com/"
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={suicide}
-              isBlog={false}
-              title="College Management System"
-              description="A complete web application built with PHP, MySQL, HTML, CSS, and Bootstrap.
-Manages students, faculty, courses, attendance, and examinations efficiently.
-Supports admin control, reporting, and academic workflow automation.
-Designed to streamline college operations and enhance overall administrative efficiency."
-              ghLink="https://github.com/soumyajit4419/AI_For_Social_Good"
-              // demoLink="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" <--------Please include a demo link here
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={emotion}
-              isBlog={false}
-              title="News Prime"
-              description="Trained a CNN classifier using 'FER-2013 dataset' with Keras and tensorflow backened. The classifier sucessfully predicted the various types of emotions of human. And the highest accuracy obtained with the model was 60.1%.
-              Then used Open-CV to detect the face in an image and then pass the face to the classifer to predict the emotion of a person."
-              ghLink="https://github.com/soumyajit4419/Face_And_Emotion_Detection"
-              // demoLink="https://blogs.soumya-jit.tech/"      <--------Please include a demo link here 
-            />
-          </Col>
+          {filteredProjects.map((project, index) => (
+            <Col 
+              key={index}
+              md={project.isLarge ? 8 : 4} 
+              className="project-card mb-4"
+            >
+              <ProjectCard
+                imgPath={project.imgPath}
+                isBlog={false}
+                title={project.title}
+                description={project.description}
+                ghLink={project.ghLink}
+                demoLink={project.demoLink}
+                tech={project.tech}
+              />
+            </Col>
+          ))}
         </Row>
       </Container>
     </Container>

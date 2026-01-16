@@ -36,3 +36,47 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+
+
+.glass {
+  background: rgba(255, 255, 255, 0.03) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.project-card-view {
+  box-shadow: 0 4px 5px 3px rgba(119, 53, 136, 0.15) !important;
+  transition: all 0.4s ease 0s !important;
+  height: 100% !important;
+}
+
+.project-card-view:hover {
+  transform: scale(1.02) !important;
+  box-shadow: 0 4px 4px 5px rgba(129, 72, 144, 0.3) !important;
+}
+
+.tech-tag {
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+  color: #cd5ff8;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-image {
+  opacity: 0.7;
+  transition: 0.7s all ease;
+}
+
+.project-card-view:hover .project-image {
+  opacity: 1;
+  transform: scale(1.1);
+}
