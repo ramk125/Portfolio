@@ -90,8 +90,6 @@ function NavBar() {
     <AiOutlineFundProjectionScreen style={{ marginBottom: "2px" }} /> Certificates
   </Nav.Link>
 </Nav.Item>
-
-
             <Nav.Item>
               <Nav.Link
                 as={Link}
@@ -114,7 +112,7 @@ function NavBar() {
 
             <Nav.Item className="fork-btn">
               <Button
-                href="https://github.com/soumyajit4419/Portfolio"
+                href="https://github.com/ramk125/Portfolio"
                 target="_blank"
                 className="fork-btn-inner"
               >
